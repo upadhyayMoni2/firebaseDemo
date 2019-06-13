@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        DatabaseReference myRef = database.getReference("items");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -34,15 +34,15 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
+               // String value = dataSnapshot.getValue(String.class);
 
                 DataSnapshot snap=dataSnapshot.child("0");
                 int watch= Integer.parseInt(snap.child("watchers").getValue().toString());
-                String name=snap.child("full_name").getValue().toString();
+                String name = snap.child("full_name").getValue().toString();
 
 
                  Txt1.setText(name);
-                 Txt2.setText(""+watch);
+               Txt2.setText(watch);
 
             }
 
